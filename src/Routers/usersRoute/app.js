@@ -6,13 +6,14 @@ const {
   Login,
   GetProfile,
   LogOut,
+  updateProfile
 } = require("../../Controllers/UserController");
 
 UserRoute.post("/register", Register);
 UserRoute.post("/login", Login);
 UserRoute.delete('/logout', LogOut)
 UserRoute.get("/profile/:UserId", AuthToken ,GetProfile);
-// UserRoute.put('/update/:emailUser', updateOne)
+UserRoute.put('/update/:userId', updateProfile)
 // UserRoute.get('/data/:emailUser', OneUser)
 // UserRoute.get('/all', AllUser)
 UserRoute.get("/", (req, res) => {

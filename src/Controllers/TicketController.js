@@ -48,7 +48,8 @@ const AllTickets = (req, res) => {
       console.log(err);
       response.Failed(res, err, "FLD20");
     }
-    response.Success(res, object, "ASKN20");
+    // res.send(result)
+    response.Success(res, result, "ASKN20");
   });
 };
 

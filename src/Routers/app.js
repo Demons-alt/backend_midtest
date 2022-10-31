@@ -7,11 +7,14 @@ const app = express();
 const UserRoute = require("./usersRoute/app");
 const ticketRoute = require("./ticketRouter/app");
 const activityRoute = require("./ActivityTickets/app");
+const formidable = require('express-formidable');
 
 const corsOptions ={
   origin:'http://localhost:3000', 
   credentials:true,            //access-control-allow-credentials:true
 }
+
+app.use(formidable())
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(

@@ -5,13 +5,15 @@ const {
   AddActivity,
   AllActivitys,
   OneActivity,
-  DeleteOneActivity
+  DeleteOneActivity,
+  UploadExel,
 } = require("../../Controllers/ActivityController");
 
 activityRoute.post("/add", AddActivity);
 // activityRoute.put("/update/:activityId");
 activityRoute.delete("/delete/:activityId", DeleteOneActivity);
 activityRoute.get("/data/:activityId", OneActivity);
+activityRoute.post("/upload", UploadExel);
 activityRoute.get("/all", AllActivitys);
 activityRoute.get("/", (req, res) => {
   res.send("This is work :)");

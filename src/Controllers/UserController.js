@@ -3,13 +3,13 @@ const response = require("../Helper/BaseRespons");
 const Jawt = require("jsonwebtoken");
 //add User
 const Register = (req, res) => {
-  const { email, password, nik, address, phone, role } = req.body;
+  const { email, password, nik, address, phone, role, name } = req.body;
 
-  const sqlQuery = `INSERT INTO users (email, password, nik, address, phone, role) VALUE (?,?,?,?,?,?)`;
+  const sqlQuery = `INSERT INTO users (email, password, nik, address, phone, role, name) VALUE (?,?,?,?,?,?,?)`;
 
   db.query(
     sqlQuery,
-    [email, password, nik, address, phone, role],
+    [email, password, nik, address, phone, role, name],
     (err, result) => {
       const object = {
         message: "success add user",
@@ -26,7 +26,7 @@ const Register = (req, res) => {
 
 const Login = (req, res) => {
   const { email, password } = req.body;
-  const sqlQuery = `SELECT email, user_id FROM users where email = ? && password = ? `;
+  const sqlQuery = `SELECT email, user_id, name FROM users where email = ? && password = ? `;
   db.query(sqlQuery, [email,password], (err, result) => {
     try {
       if (result == 0) {
@@ -68,7 +68,6 @@ const GetProfile = (req, res) => {
 
 
 //logout
-
 const LogOut = (req,res) => {
     let Token = req.headers['authorization']
     if (!Token) {
@@ -80,9 +79,34 @@ const LogOut = (req,res) => {
     return
     }
 }
+
+
+const updateProfile = (req, res) => {
+  const { email, password, nik, address, phone, role,name } = req.body;
+
+  const sqlQuery = `UPDATE users email = ? password = ? nik = ? address = ? phone = ? role =?  name =? where user_id = ${req.params.userId}`;
+
+  db.query(
+    sqlQuery,
+    [email, password, nik, address, phone, role, name],
+    (err, result) => {
+      const object = {
+        message: "success update user",
+      };
+      if (err) {
+        console.log(err);
+        response.Failed(res, err, "FILD10");
+      }
+      console.log(object);  
+      response.Success(res, object, "ASKN10");
+    }
+  );
+};
+
 module.exports = {
   Register,
   Login,
   GetProfile,
   LogOut,
+  updateProfile
 };

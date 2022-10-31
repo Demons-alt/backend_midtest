@@ -1,10 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "test": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "mie",
   "license": "ISC",
@@ -19,7 +19,18 @@
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
+    "redis": "^4.3.1",
     "sequelize": "^6.25.3",
+    "uuid": "^9.0.0",
     "xlsx-to-json-lc": "^0.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Demons-alt/backend_midtest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Demons-alt/backend_midtest/issues"
+  },
+  "homepage": "https://github.com/Demons-alt/backend_midtest#readme",
+  "description": ""
 }
